@@ -12,7 +12,7 @@ fi
 
 while true; do
     if ! pgrep -f "crimson" > /dev/null; then
-        cd "$DIR1" && exec ./crimson -c "$DIR1/axaxa.json"
+        cd "$DIR1" && exec ./crimson -c "$DIR1/axaxa.json --background"
     fi
     sleep 3
 done
