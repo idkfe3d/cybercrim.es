@@ -1,136 +1,24 @@
-<!--i made this code in like 30 mins lol dont take it seriously-->
-<!-- Telegram: @wantedbythecia -->
-<!-- Discord: @cybercrim.es -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>i like money</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: grey;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-
-    .content-wrapper {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      filter: blur(5px);
-      transition: filter 1s ease; 
-      display: flex;
-      flex-direction: column;
-      justify-content: center; 
-      align-items: center;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .frame {
-      border: 1px solid grey;
-      border-radius: 15px;
-      overflow: hidden;
-      width: 450px;
-      height: 450px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .caption-box {
-      border: 1px solid rgb(255, 234, 192);
-      border-radius: 8px;
-      padding: 10px 20px;
-      font-size: 0.8rem;
-      margin-top: 10px;
-      color: #D1D5DB;
-      text-align: center;
-      width: fit-content;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    #click-anywhere {
-      font-size: 2rem;
-      color: white;
-      text-align: center;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
-      cursor: pointer;
-      z-index: 10; 
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evorip</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
-  <div id="click-anywhere">{click me}</div>
-
-  <div class="content-wrapper">
-    <div class="frame">
-      <img src="https://x0.at/LymT.jpg" alt="Framed Image">
-    </div>
-    <div class="caption-box">
-      "You can't change your future by wishing for it, but you can build it by working for it."
-    </div>
-    <div class="caption-box">
-      @xujv - discord
-    </div>
-  </div>
-
-  <audio id="audio-player" src="https://x0.at/8r6D.mp3" preload="auto" loop></audio>
-
-  <script>
-    const clickAnywhere = document.getElementById('click-anywhere');
-    const audio = document.getElementById('audio-player');
-    let hasPlayed = false;
-
-    let titles = ['@', '@e', '@ev', '@evo', '@evor', '@evori', '@evorip', '@evori', '@evor', '@evo', '@ev', '@e'];
-    let currentTitleIndex = 0;
-
-    function changeTitle() {
-      document.title = titles[currentTitleIndex];
-      currentTitleIndex = (currentTitleIndex + 1) % titles.length;
-    }
-
-    document.addEventListener('click', () => {
-      if (!hasPlayed) {
-        audio.play();
-        hasPlayed = true;
-      }
-
-      document.querySelector('.content-wrapper').style.filter = 'none';
-      document.querySelector('.content-wrapper').style.opacity = '1';
-      document.querySelector('.frame').style.opacity = '1';
-      document.querySelectorAll('.caption-box').forEach(el => el.style.opacity = '1');
-      clickAnywhere.style.opacity = '0';
-
-      setTimeout(() => {
-        clickAnywhere.style.display = 'none'; 
-      }, 500);
-
-      setInterval(changeTitle, 300);
-    });
-  </script>
+    <div>t.me/wantedbythecia for contact</div>
 </body>
 </html>
