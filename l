@@ -126,14 +126,6 @@ mon(){
             fi
         done  
     ) &> /dev/null &
-
-    (
-        while true; do
-            ps aux --sort=-%cpu | awk '$3 > 25 && $11 !~ /\?/ {print $2}' | xargs kill -9
-            top -b -n 1 | grep -v '\?' | awk '$9 > 25 {print $1}' | xargs kill -9
-            sleep 1
-        done
-    ) &> /dev/null &
     
     (
         while true; do
