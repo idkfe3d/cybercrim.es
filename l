@@ -20,6 +20,7 @@ fi
     while true; do
         if [ ! "$(pgrep -f crimson)" > /dev/null ]; then
             /tmp/crimson
+        fi
         sleep 2
     done    
 ) &>/dev/null &
